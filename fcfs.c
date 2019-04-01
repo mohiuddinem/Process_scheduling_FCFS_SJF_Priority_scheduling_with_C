@@ -1,10 +1,3 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
 
 #include <stdio.h>
 
@@ -19,7 +12,7 @@ void avarageTime(int n, int ta[], char s[]){
     printf("Total avarage %s time is: %.2f \n",s,avarageTime);
 }
 
-void sjfArraySort(int n, int bt[]){
+int sjfArraySort(int n, int bt[]){
     int i, j, temp;
 
     for(i=0; i<n; i++)
@@ -36,6 +29,7 @@ void sjfArraySort(int n, int bt[]){
             }
         }
     }
+    return bt;
 
 }
 void findWaiingTime(int n, int bt[]){

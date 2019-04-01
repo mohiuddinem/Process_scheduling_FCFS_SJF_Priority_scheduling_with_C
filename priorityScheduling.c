@@ -19,57 +19,37 @@ void avarageTime(int n, int ta[], char s[]){
     printf("Total avarage %s time is: %.2f \n",s,avarageTime);
 }
 
-int sjfArraySort(int n, int bt[]){
-    int i, j, temp;
-
-    for(i=0; i<n; i++)
+int prioritySchedulingSorting(int n, int process[], int priority[], int bt[]){
+    int i,j,temp,pos;
+    for(i=0;i<n;i++)
     {
-        
-        for(j=i+1; j<n; j++)
+        pos=i;
+        for(j=i+1;j<n;j++)
         {
-            
-            if(bt[i] > bt[j])
-            {
-                temp  = bt[i];
-                bt[i] = bt[j];
-                bt[j] = temp;
-            }
+            if(priority[j]<priority[pos])
+                pos=j;
         }
+
+        temp=priority[i];
+        priority[i]=priority[pos];
+        priority[pos]=temp;
+
+        temp=bt[i];
+        bt[i]=bt[pos];
+        bt[pos]=temp;
+
+        temp=process[i];
+        process[i]=process[pos];
+        process[pos]=temp;
     }
 
 }
-// int prioritySchedulingSorting(int n, int process[], int priority[], int bt[]){
-//     int i,j,temp,pos;
-//     for(i=0;i<n;i++)
-//     {
-//         pos=i;
-//         for(j=i+1;j<n;j++)
-//         {
-//             if(priority[j]<priority[pos])
-//                 pos=j;
-//         }
-
-//         temp=priority[i];
-//         priority[i]=priority[pos];
-//         priority[pos]=temp;
-
-//         temp=bt[i];
-//         bt[i]=bt[pos];
-//         bt[pos]=temp;
-
-//         temp=process[i];
-//         process[i]=process[pos];
-//         process[pos]=temp;
-//     }
-
-// }
 void findWaiingTime(int n, int bt[], int process[], int priority[]){
     int wt[n];
     int tt[n];
     wt[0]=0;
     int i;
-    sjfArraySort(n,bt);
-    //prioritySchedulingSorting(n, process, priority, bt);
+    prioritySchedulingSorting(n, process, priority, bt);
     
     for (i=1; i<n; i++){
         wt[i]=bt[i-1]+wt[i-1];
